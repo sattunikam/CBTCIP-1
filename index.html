@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>To-Do List</h1>
+
+        <form @submit.prevent="addTask">
+            <label for="task">New Task:</label>
+            <input type="text" id="task" v-model="newTask" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div v-if="tasks.length > 0">
+            <h2>Tasks</h2>
+            <ul>
+                <li v-for="task in tasks" :key="task.id">
+                    <span>{{ task.text }}</span>
+                    <span class="date">{{ task.date }}</span>
+                    <button @click="completeTask(task.id)">Complete</button>
+                </li>
+            </ul>
+        </div>
+
+        <div v-if="completedTasks.length > 0">
+            <h2>Completed Tasks</h2>
+            <ul>
+                <li v-for="task in completedTasks" :key="task.id">
+                    <span>{{ task.text }}</span>
+                    <span class="date">{{ task.date }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
